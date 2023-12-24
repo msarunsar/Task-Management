@@ -1,0 +1,122 @@
+basePath: /task-management/api/v1
+definitions:
+  models.Task:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      status:
+        type: string
+      title:
+        type: string
+    type: object
+  models.TaskRequest:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample Echo API with Swagger documentation.
+  title: Task Management API
+  version: "1.0"
+paths:
+  /task:
+    delete:
+      description: Get a sample response from the server
+      operationId: put-task-status
+      parameters:
+      - description: Resource ID
+        in: query
+        name: task_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Resource deleted successfully
+          schema:
+            items:
+              $ref: '#/definitions/models.Task'
+            type: array
+      summary: DeleteTask
+    get:
+      description: Get a sample response from the server
+      operationId: get-task
+      parameters:
+      - description: Resource ID
+        in: query
+        name: task_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Resource found
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: GetTask
+    post:
+      consumes:
+      - application/json
+      description: Get a sample response from the server
+      operationId: post-task
+      parameters:
+      - description: Request Body if send ID that will become UPDATE API
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.TaskRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Resource created successfully
+          schema:
+            items:
+              $ref: '#/definitions/models.Task'
+            type: array
+      summary: CreateAndUpdateTask
+    put:
+      description: Get a sample response from the server
+      operationId: put-task-status
+      parameters:
+      - description: Resource ID
+        in: query
+        name: task_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Resource updated successfully
+          schema:
+            items:
+              $ref: '#/definitions/models.Task'
+            type: array
+      summary: UpdateTaskStatus
+  /task-list:
+    get:
+      description: Get a sample response from the server
+      operationId: get-task-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Resource found
+          schema:
+            items:
+              $ref: '#/definitions/models.Task'
+            type: array
+      summary: GetTasksList
+swagger: "2.0"
